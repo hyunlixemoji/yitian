@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="page-title">一天</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1 class="page-title" id="main-title">
+        <span>一天</span>
+        <button id="date-button" class="date-button">择日</button>
+    </h1>
+    <div class="container">
+        <div class="layer" id="zaochen"><h3 class="green">早晨</h3><div class="inputs"></div><button class="add">+</button><button class="remove">-</button></div>
+        <div class="layer" id="shangwu"><h3 class="lake-green">上午</h3><div class="inputs"></div><button class="add">+</button><button class="remove">-</button></div>
+        <div class="layer" id="zhongwu"><h3 class="pink">中午</h3><div class="inputs"></div><button class="add">+</button><button class="remove">-</button></div>
+        <div class="layer" id="xiawu"><h3 class="yellow">下午</h3><div class="inputs"></div><button class="add">+</button><button class="remove">-</button></div>
+        <div class="layer" id="wanshang"><h3 class="blue">晚上</h3><div class="inputs"></div><button class="add">+</button><button class="remove">-</button></div>
+    </div>
+
+    <div class="modal" id="time-picker">
+        <div class="modal-content">
+            <div class="time-picker">
+                <select id="start-hour"></select>:<select id="start-minute"></select>
+            </div>
+            <div class="time-picker">
+                <select id="end-hour"></select>:<select id="end-minute"></select>
+            </div>
+            <div class="button-container">
+                <button id="save-time" class="modal-button">保存</button>
+                <button class="close modal-button">取消</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="date-picker">
+        <div class="modal-content">
+            <input type="date" id="date-input" />
+            <div class="button-container">
+                <button id="save-date" class="modal-button">确定</button>
+                <button class="close-date modal-button">取消</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
