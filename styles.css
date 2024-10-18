@@ -185,3 +185,21 @@ select {
     gap: 10px;
     margin-top: 20px;
 }
+
+/* 新增：媒体查询，适配手机屏幕 */
+@media (max-width: 600px) {
+    .input-wrapper {
+        max-width: 30%; /* 每行最多3个输入框 */
+        flex-grow: 1; /* 允许输入框伸展以占用可用空间 */
+    }
+
+    button {
+        width: 35px; /* 调整按钮大小 */
+        height: 35px; 
+        font-size: 16px; /* 调整字体大小 */
+    }
+
+    .inputs {
+        justify-content: space-between; /* 输入框之间的间距 */
+    }
+}
