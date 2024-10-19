@@ -194,7 +194,7 @@ select {
     }
     
     .input-wrapper {
-        max-width: 48%; /* 每行最多2个输入框 */
+        width: 48%; /* 每行最多2个输入框 */
     }
 
     .input-wrapper div {
