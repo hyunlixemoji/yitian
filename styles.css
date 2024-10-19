@@ -194,19 +194,24 @@ select {
     .layer {
         width: 100%; /* 层宽度与容器相同 */
         display: flex;
-        justify-content: space-between; /* 内容居中 */
-        align-items: center; /* 垂直居中 */
+        flex-direction: column; /* 纵向排列 */
+        align-items: flex-start; /* 左对齐 */
     }
 
     .inputs {
         display: flex;
         flex-wrap: wrap; /* 允许换行 */
         justify-content: space-between; /* 平均分配空间 */
+        margin-bottom: 10px; /* 内容间距 */
     }
 
     .input-wrapper {
         width: 45%; /* 每个输入框宽度 */
-        margin-bottom: 10px; /* 输入框间距 */
+        margin-right: 2%; /* 输入框之间的距离 */
+    }
+
+    .input-wrapper:nth-child(2n) {
+        margin-right: 0; /* 每行最后一个输入框不加右间距 */
     }
 
     .input-wrapper div {
@@ -228,24 +233,26 @@ select {
     }
 
     h3 {
-        font-size: 8px; /* 三级标题大小 */
-        height: 4px; /* 高度设置 */
+        font-size: '2%'; /* 三级标题大小 */
+        height: auto; /* 自适应高度 */
     }
 
-    button {
-        border-radius: 5px; /* 按钮半径 */
-        width: 10px; /* 按钮直径 */
-        height: 10px; /* 按钮高度 */
+    .add {
+        border-radius: 50%; /* 圆形按钮 */
+        width: 4%; /* 按钮直径 */
+        height: 4%; /* 按钮高度 */
         display: flex;
         justify-content: center;
         align-items: center; /* 垂直居中 */
-    }
-
-    .add, .remove {
-        margin: 0 2px; /* 按钮之间的距离 */
+        margin-bottom: 1%; /* 上下间距 */
     }
 
     .remove {
-        margin-right: 2%; /* 与容器右侧的距离 */
+        border-radius: 50%; /* 圆形按钮 */
+        width: 4%; /* 按钮直径 */
+        height: 4%; /* 按钮高度 */
+        display: flex;
+        justify-content: center;
+        align-items: center; /* 垂直居中 */
     }
 }
