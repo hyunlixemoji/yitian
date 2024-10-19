@@ -5,17 +5,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const mainTitle = document.getElementById('main-title');
     let currentInput;
 
-    // 从本地存储恢复状态
     const storedData = JSON.parse(localStorage.getItem('userData')) || {};
-    let currentDate = new Date().toISOString().split('T')[0]; // 默认为今天的日期
+    let currentDate = new Date().toISOString().split('T')[0];
 
-    // 设置初始日期
     mainTitle.querySelector('span').innerText = currentDate;
-
-    // 初始化各层的输入框数量和内容
     loadDayData(currentDate);
 
-    // 监听日期选择器
     document.getElementById('date-button').addEventListener('click', () => {
         datePickerModal.style.display = 'block';
     });
@@ -23,8 +18,8 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('save-date').addEventListener('click', () => {
         const selectedDate = document.getElementById('date-input').value;
         mainTitle.querySelector('span').innerText = selectedDate;
-        currentDate = selectedDate; // 更新当前日期
-        loadDayData(currentDate); // 加载该日期的日程数据
+        currentDate = selectedDate;
+        loadDayData(currentDate);
         datePickerModal.style.display = 'none';
     });
 
@@ -32,22 +27,19 @@ document.addEventListener('DOMContentLoaded', () => {
         datePickerModal.style.display = 'none';
     });
 
-    // 初始化各层的输入框数量和内容
     function loadDayData(date) {
         layers.forEach(layer => {
             const inputsContainer = layer.querySelector('.inputs');
             const layerId = layer.id;
             const inputData = storedData[date]?.[layerId]?.inputs || [];
 
-            // 清空输入框
             inputsContainer.innerHTML = '';
 
-            // 添加保存的数据
             inputData.forEach(input => {
                 addInput(inputsContainer, input.content, input.time);
             });
 
-            // 确保初始输入框数量
+            // 确保每层至少有一个输入框
             while (inputsContainer.childElementCount < getDefaultCount(layerId)) {
                 addInput(inputsContainer);
             }
@@ -70,17 +62,15 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         const contentInput = document.createElement('textarea');
-        contentInput.placeholder = '输入内容'; // 确保设置占位符
-        contentInput.value = content; // 设置内容
+        contentInput.placeholder = '输入内容';
+        contentInput.value = content;
 
         inputWrapper.append(timeInput, contentInput);
         container.appendChild(inputWrapper);
 
-        contentInput.addEventListener('input', saveState); // 监听内容变化
-        saveState(); // 保存状态
+        contentInput.addEventListener('input', saveState);
     }
 
-    // 恢复输入框增减功能
     layers.forEach(layer => {
         const inputsContainer = layer.querySelector('.inputs');
         const addButton = layer.querySelector('.add');
@@ -88,9 +78,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
         addButton.addEventListener('click', () => {
             addInput(inputsContainer);
+            saveState(); // 更新状态
         });
 
         removeButton.addEventListener('click', () => {
+            // 确保至少保留一个输入框
             if (inputsContainer.childElementCount > 1) {
                 inputsContainer.lastElementChild.remove();
                 saveState(); // 更新状态
@@ -102,7 +94,6 @@ document.addEventListener('DOMContentLoaded', () => {
         populateTimeSelects();
         modal.style.display = 'block';
 
-        // 设置当前时间选择框的值
         if (timeInput) {
             const timeParts = timeInput.textContent.split('-');
             if (timeParts.length === 2) {
@@ -126,38 +117,37 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 时间选择框按钮事件
     document.getElementById('save-time').addEventListener('click', () => {
-        const startHour = document.getElementById('start-hour').value.padStart(2, '0'); // 确保为两位数
+        const startHour = document.getElementById('start-hour').value.padStart(2, '0');
         const startMinute = document.getElementById('start-minute').value.padStart(2, '0');
         const endHour = document.getElementById('end-hour').value.padStart(2, '0');
         const endMinute = document.getElementById('end-minute').value.padStart(2, '0');
 
-        // 将选择的时间设置到当前输入框中，格式为xx:xx-xx:xx
         if (currentInput) {
             currentInput.textContent = `${startHour}:${startMinute}-${endHour}:${endMinute}`;
         }
 
-        modal.style.display = 'none'; // 隐藏时间选择框
-        saveState(); // 保存状态
+        modal.style.display = 'none';
+        saveState();
     });
 
     document.querySelector('.close').addEventListener('click', () => modal.style.display = 'none');
 
-    // 保存状态到本地存储
     function saveState() {
-        const userData = storedData;
+        const userData = { ...storedData };
         userData[currentDate] = userData[currentDate] || {};
+        
         layers.forEach(layer => {
             const layerId = layer.id;
             const inputsContainer = layer.querySelector('.inputs');
             userData[currentDate][layerId] = {
                 inputs: Array.from(inputsContainer.children).map(inputWrapper => ({
                     content: inputWrapper.querySelector('textarea').value,
-                    time: inputWrapper.querySelector('div').textContent // 获取时间文本
+                    time: inputWrapper.querySelector('div').textContent
                 }))
             };
         });
+        
         localStorage.setItem('userData', JSON.stringify(userData));
     }
 });
