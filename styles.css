@@ -197,7 +197,6 @@ select {
         flex-direction: column; /* 垂直排列 */
         align-items: center; /* 居中对齐 */
         padding: 10px; /* 内边距 */
-        gap: 10px; /* 间距 */
     }
 
     .inputs {
@@ -205,6 +204,7 @@ select {
         justify-content: space-between; /* 输入框之间的间距 */
         width: 100%; /* 输入框宽度为100% */
         padding: 0 5%; /* 左右边距 */
+        gap: 10px; /* 输入框间距 */
     }
 
     .input-wrapper {
@@ -213,15 +213,16 @@ select {
     }
 
     .input-wrapper div {
-        width: 90px; /* 设置恒定大小 */
+        width: 45%; /* 设置恒定大小 */
         height: 30px; /* 设置恒定高度 */
         font-size: 14px; /* 字体大小 */
-        padding: 5px; /* 内边距 */
         text-align: center; /* 文本居中 */
+        border: 2px solid black; /* 边框 */
+        border-radius: 4px; /* 圆角 */
     }
 
     .input-wrapper textarea {
-        width: 90px; /* 设置恒定大小 */
+        width: 45%; /* 设置恒定大小 */
         height: 40px; /* 设置恒定高度 */
         padding: 5px; /* 内边距 */
     }
