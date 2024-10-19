@@ -194,7 +194,7 @@ select {
     }
     
     .input-wrapper {
-        width: 40%; /* 每行最多2个输入框 */
+        width: 44%; /* 每行最多2个输入框 */
     }
 
     .input-wrapper div {
@@ -213,6 +213,7 @@ select {
         width: 30px; /* 调整按钮大小 */
         height: 30px; 
         font-size: 14px; /* 调整字体大小 */
+        margin: 5px 0;
     }
 
     .button-container {
