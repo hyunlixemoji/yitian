@@ -186,32 +186,66 @@ select {
     margin-top: 20px;
 }
 
-
 @media (max-width: 600px) {
-    .input-wrapper {
-        max-width: 48%; /* 每行最多2个输入框 */
-        flex-grow: 1; /* 允许输入框伸展以占用可用空间 */
+    .container {
+        width: 95%; /* 容器宽度 */
     }
 
-    .input-wrapper div {
-        width: 70px; /* 缩小输入框大小 */
-        height: 18px; /* 缩小高度 */
-        font-size: 10px; /* 调整字体大小 */
-    }
-
-    .input-wrapper textarea {
-        width: 75px; /* 缩小输入框大小 */
-        height: 22px; /* 缩小高度 */
-        padding: 3px; /* 调整内边距 */
-    }
-
-    button {
-        width: 30px; /* 调整按钮大小 */
-        height: 30px; 
-        font-size: 14px; /* 调整字体大小 */
+    .layer {
+        width: 100%; /* 层宽度与容器相同 */
+        display: flex;
+        justify-content: space-between; /* 内容居中 */
+        align-items: center; /* 垂直居中 */
     }
 
     .inputs {
-        justify-content: space-between; /* 输入框之间的间距 */
+        display: flex;
+        flex-wrap: wrap; /* 允许换行 */
+        justify-content: space-between; /* 平均分配空间 */
+    }
+
+    .input-wrapper {
+        width: 45%; /* 每个输入框宽度 */
+        margin-bottom: 10px; /* 输入框间距 */
+    }
+
+    .input-wrapper div {
+        width: 100%; /* 时间选择框宽度 */
+        height: 20px;
+        background-color: #d3d3d3;
+        text-align: center;
+        cursor: pointer;
+        font-size: 12px;
+        border: 2px solid black;
+        border-radius: 4px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        display: flex; /* 垂直居中 */
+        align-items: center;
+        justify-content: flex-start; /* 左对齐 */
+        padding-left: 2%; /* 左侧距离 */
+    }
+
+    h3 {
+        font-size: 8px; /* 三级标题大小 */
+        height: 4px; /* 高度设置 */
+    }
+
+    button {
+        border-radius: 5px; /* 按钮半径 */
+        width: 10px; /* 按钮直径 */
+        height: 10px; /* 按钮高度 */
+        display: flex;
+        justify-content: center;
+        align-items: center; /* 垂直居中 */
+    }
+
+    .add, .remove {
+        margin: 0 2px; /* 按钮之间的距离 */
+    }
+
+    .remove {
+        margin-right: 2%; /* 与容器右侧的距离 */
     }
 }
